@@ -137,13 +137,17 @@ document.addEventListener("DOMContentLoaded", function () {
     video.classList.add("show");
     document.querySelector(".intro-container").classList.add("video-showing");
 
-    // Try to play video
+    // Start video fresh from beginning
+    video.currentTime = 0;
     const playPromise = video.play();
     if (playPromise !== undefined) {
       playPromise.catch((error) =>
         console.log("Video autoplay failed:", error)
       );
     }
+
+    // Set up drum hit effects starting at 17 seconds
+    setTimeout(() => startDrumHitEffects(), 5000); // 17s total (12s + 5s)
   }
 
   function showMainTitle() {
@@ -188,5 +192,29 @@ document.addEventListener("DOMContentLoaded", function () {
   function clearAllTimeouts() {
     timeouts.forEach((id) => clearTimeout(id));
     timeouts = [];
+  }
+
+  function startDrumHitEffects() {
+    // First drum hit at 17 seconds
+    restartVideoAndFlash();
+
+    // Then every 4 seconds after that (21s, 25s, 29s, etc.)
+    setInterval(() => {
+      restartVideoAndFlash();
+    }, 4350);
+  }
+
+  function restartVideoAndFlash() {
+    // Restart video from beginning
+    video.currentTime = 0;
+
+    // Flash effect
+    const flashOverlay = document.querySelector(".flash-overlay");
+    flashOverlay.classList.add("flash");
+
+    // Remove flash after brief moment
+    setTimeout(() => {
+      flashOverlay.classList.remove("flash");
+    }, 150);
   }
 });
