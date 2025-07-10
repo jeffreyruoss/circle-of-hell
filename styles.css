@@ -55,9 +55,6 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   z-index: 1;
   background: #000;
   transition: background 2s ease-in-out;
@@ -88,8 +85,14 @@ body {
   pointer-events: auto;
 }
 
+.start-button-container.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
 .start-warning {
   font-size: 1.5rem;
+  font-weight: bold;
   margin-bottom: 2rem;
   text-shadow: 0 0 10px rgba(255, 0, 0, 0.7), 0 0 40px rgba(255, 0, 0, 0.5);
   /* animation: warningPulse 2.5s ease-in-out infinite; */
@@ -134,7 +137,14 @@ body {
   animation: pulseOpacity 2s ease-in-out infinite;
 }
 
+/* Ensure hidden start button stays hidden */
+.start-button-container.hidden .start-button {
+  animation: none;
+  opacity: 0;
+}
+
 .loading-spinner {
+  opacity: 0.5;
   width: 100px;
   height: 100px;
   border: 8px solid transparent;
@@ -184,10 +194,25 @@ body {
 }
 
 .loading-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  z-index: 1000;
+  background: #000;
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
   gap: 2rem;
+}
+
+.loading-container.hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .loading-text {
@@ -195,7 +220,7 @@ body {
   font-size: 1.6rem;
   font-weight: bold;
   text-shadow: 0 0 5px rgb(255, 102, 0.3), 0 0 20px rgb(255, 102, 0.3), 0 0 30px rgb(255, 102, 0.1);
-  /* animation: loadingPulse 2s ease-in-out infinite; */
+  animation: loadingPulse 2s ease-in-out infinite;
 }
 
 @keyframes loadingPulse {
@@ -203,19 +228,27 @@ body {
   50% { opacity: 1; }
 }
 
+@keyframes pulseOpacity {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
 .intro-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
   font-size: 4rem;
   font-weight: bold;
   color: #000;
   opacity: 0;
-  transform: scale(0.8);
   transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
   text-align: center;
 }
 
 .intro-text.show {
   opacity: 1;
-  transform: scale(1);
+  transform: translate(-50%, -50%) scale(1);
 }
 
 .intro-text.fire {
@@ -231,19 +264,21 @@ body {
 }
 
 .main-title-intro {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
   font-size: 5rem;
-  font-weight: bold;
   color: #000;
   text-shadow: 0 0 30px rgba(255, 102, 0, 0.7), 0 0 50px rgba(255, 102, 0, 0.5), 0 0 70px rgba(255, 102, 0, 0.3), 0 0 90px rgba(255, 0, 0, 0.3);
   opacity: 0;
-  transform: scale(0.5);
   transition: opacity 3s ease-in-out, transform 3s ease-in-out;
   text-align: center;
 }
 
 .main-title-intro.show {
   opacity: 1;
-  transform: scale(1);
+  transform: translate(-50%, -50%) scale(1);
 }
 
 .content-container {
@@ -321,16 +356,12 @@ body {
 }
 
 .stats {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
   margin: 2rem 0;
   gap: 1rem;
 }
 
 .stat-item {
   font-size: 1.3rem;
-  font-weight: bold;
   color: #000;
   text-shadow: 0 0 20px rgba(255, 255, 255, 0.7), 0 0 40px rgba(255, 255, 255, 0.5), 0 0 60px rgba(255, 255, 255, 0.3);
 }
@@ -341,7 +372,6 @@ body {
   border-radius: 15px;
   border: 2px solid #ff0000;
   margin: 2rem 0;
-  font-weight: bold;
   font-size: 1.2rem;
 }
 
@@ -373,7 +403,6 @@ body {
 .donation-link {
   color: #00ffaa;
   text-decoration: none;
-  font-weight: bold;
   word-break: break-all;
 }
 
