@@ -83,14 +83,20 @@ document.addEventListener("DOMContentLoaded", function () {
     introHasStarted = true;
     audio.play();
 
-    // Show stats one by one
+    // Show stats one by one, fading out previous
     setTimeout(() => showIntroText(0), 1000); // Fire - 3 hourz
-    setTimeout(() => showIntroText(1), 3000); // Death - 1 mile loop
-    setTimeout(() => showIntroText(2), 5000); // Fun - 2much FUn!
+    setTimeout(() => {
+      hideIntroText(0); // Hide Fire
+      showIntroText(1); // Show Death - 1 mile loop
+    }, 3000);
+    setTimeout(() => {
+      hideIntroText(1); // Hide Death
+      showIntroText(2); // Show Fun - 2much FUn!
+    }, 5000);
 
     // Hide stats and show main title at 7 seconds (NO FIRE YET)
     setTimeout(() => {
-      hideAllIntroTexts();
+      hideIntroText(2); // Hide the last stat (Fun)
       setTimeout(() => showMainTitleOnly(), 500);
     }, 7000);
 
@@ -105,6 +111,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const introTexts = document.querySelectorAll(".intro-text");
     if (introTexts[index]) {
       introTexts[index].classList.add("show");
+    }
+  }
+
+  function hideIntroText(index) {
+    const introTexts = document.querySelectorAll(".intro-text");
+    if (introTexts[index]) {
+      introTexts[index].classList.remove("show");
     }
   }
 
