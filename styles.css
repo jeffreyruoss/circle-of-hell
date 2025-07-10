@@ -278,7 +278,7 @@ body {
 
 .main-title-intro.show {
   opacity: 1;
-  animation: continuousZoom 5s ease-out forwards;
+  animation: continuousZoom 6s ease-out forwards;
 }
 
 @keyframes continuousZoom {
