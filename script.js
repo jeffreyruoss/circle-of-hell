@@ -13,12 +13,12 @@ document.addEventListener("DOMContentLoaded", function () {
   let audioLoaded = DEV_CONFIG.disableAudio;
   let introHasStarted = false;
 
-  // Check when both video and audio are loaded (only once each)
+  // Check when both video and audio are ready to play (only once each)
   if (!DEV_CONFIG.disableVideo) {
     video.addEventListener(
-      "canplaythrough",
+      "canplay",
       function () {
-        console.log("Video loaded");
+        console.log("Video ready to play");
         videoLoaded = true;
         checkAllLoaded();
       },
@@ -38,9 +38,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (!DEV_CONFIG.disableAudio && audio) {
     audio.addEventListener(
-      "canplaythrough",
+      "canplay",
       function () {
-        console.log("Audio loaded");
+        console.log("Audio ready to play");
         audioLoaded = true;
         checkAllLoaded();
       },
@@ -70,15 +70,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Fallback timeout
+  // Fallback timeout (reduced from 10s to 3s since files are much smaller now)
   setTimeout(() => {
     if (!videoLoaded || !audioLoaded) {
       console.log("Timeout reached, starting anyway");
+      console.log(`Video loaded: ${videoLoaded}, Audio loaded: ${audioLoaded}`);
       videoLoaded = true;
       audioLoaded = true;
       checkAllLoaded();
     }
-  }, 10000);
+  }, 3000);
 
   // Handle clicks
   document.addEventListener("click", function (e) {

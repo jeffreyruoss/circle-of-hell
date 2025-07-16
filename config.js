@@ -1,7 +1,7 @@
 // Development Configuration
 const DEV_CONFIG = {
   // Set to true to skip text sequence (3 hourz, 1 mile loop, 2much FUn) and jump straight to fire
-  skipIntro: true,
+  skipIntro: false,
 
   // Set to true to disable video loading/playing
   disableVideo: false,
