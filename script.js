@@ -1,43 +1,69 @@
 // Simplified intro animation controller
 document.addEventListener("DOMContentLoaded", function () {
   const video = document.querySelector(".video-background");
-  const audio = new Audio("audio/cohr.mp3");
-  audio.preload = "auto";
 
-  let videoLoaded = false;
-  let audioLoaded = false;
+  // Conditionally load audio
+  let audio = null;
+  if (!DEV_CONFIG.disableAudio) {
+    audio = new Audio("audio/cohr.mp3");
+    audio.preload = "auto";
+  }
+
+  let videoLoaded = DEV_CONFIG.disableVideo;
+  let audioLoaded = DEV_CONFIG.disableAudio;
   let introHasStarted = false;
 
-  // Check when both video and audio are loaded
-  video.addEventListener("canplaythrough", function () {
-    console.log("Video loaded");
-    videoLoaded = true;
-    checkAllLoaded();
-  });
+  // Check when both video and audio are loaded (only once each)
+  if (!DEV_CONFIG.disableVideo) {
+    video.addEventListener(
+      "canplaythrough",
+      function () {
+        console.log("Video loaded");
+        videoLoaded = true;
+        checkAllLoaded();
+      },
+      { once: true }
+    );
 
-  audio.addEventListener("canplaythrough", function () {
-    console.log("Audio loaded");
-    audioLoaded = true;
-    checkAllLoaded();
-  });
+    video.addEventListener(
+      "error",
+      function () {
+        console.log("Video loading error");
+        videoLoaded = true;
+        checkAllLoaded();
+      },
+      { once: true }
+    );
+  }
 
-  // Handle loading errors
-  video.addEventListener("error", function () {
-    console.log("Video loading error");
-    videoLoaded = true;
-    checkAllLoaded();
-  });
+  if (!DEV_CONFIG.disableAudio && audio) {
+    audio.addEventListener(
+      "canplaythrough",
+      function () {
+        console.log("Audio loaded");
+        audioLoaded = true;
+        checkAllLoaded();
+      },
+      { once: true }
+    );
 
-  audio.addEventListener("error", function () {
-    console.log("Audio loading error");
-    audioLoaded = true;
-    checkAllLoaded();
-  });
+    audio.addEventListener(
+      "error",
+      function () {
+        console.log("Audio loading error");
+        audioLoaded = true;
+        checkAllLoaded();
+      },
+      { once: true }
+    );
+  }
 
   function checkAllLoaded() {
     if (videoLoaded && audioLoaded) {
-      console.log("All media loaded, showing start button");
+      console.log("All media loaded");
       document.querySelector(".loading-container").classList.add("hidden");
+
+      // Normal flow - show start button
       setTimeout(() => {
         document.querySelector(".start-button-container").classList.add("show");
       }, 500);
@@ -66,7 +92,14 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("Start button clicked");
       startButtonContainer.classList.remove("show");
       startButtonContainer.classList.add("hidden");
-      startIntroSequence();
+
+      // Skip text sequence if configured
+      if (DEV_CONFIG.skipIntro) {
+        console.log("🔥 Skipping text sequence - jumping to fire");
+        startFireDirectly();
+      } else {
+        startIntroSequence();
+      }
       return;
     }
 
@@ -81,7 +114,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function startIntroSequence() {
     introHasStarted = true;
-    audio.play();
+    if (audio && !DEV_CONFIG.disableAudio) {
+      audio.play();
+    }
+
+    // Check if we should skip the text sequence
+    if (DEV_CONFIG.skipIntro) {
+      console.log("🔥 Skipping text sequence in intro - jumping to fire");
+      startFireDirectly();
+      return;
+    }
 
     // Show stats one by one, fading out previous
     setTimeout(() => showIntroText(0), 1000); // Fire - 3 hourz
@@ -132,12 +174,14 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function showFireBackground() {
-    // Flash effect synchronized with fire appearance
-    const flashOverlay = document.querySelector(".flash-overlay");
-    flashOverlay.classList.add("flash");
-    setTimeout(() => {
-      flashOverlay.classList.remove("flash");
-    }, 150);
+    // Flash effect synchronized with fire appearance (skip if skipping intro)
+    if (!DEV_CONFIG.skipIntro) {
+      const flashOverlay = document.querySelector(".flash-overlay");
+      flashOverlay.classList.add("flash");
+      setTimeout(() => {
+        flashOverlay.classList.remove("flash");
+      }, 150);
+    }
 
     // Instant fire appearance (no fade/transition)
     // Using direct style manipulation for immediate effect
@@ -148,16 +192,31 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelector(".intro-container").classList.add("video-showing");
 
     // Start video fresh from beginning
-    video.currentTime = 0;
-    const playPromise = video.play();
-    if (playPromise !== undefined) {
-      playPromise.catch((error) =>
-        console.log("Video autoplay failed:", error)
-      );
+    if (!DEV_CONFIG.disableVideo) {
+      video.currentTime = 0;
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((error) =>
+          console.log("Video autoplay failed:", error)
+        );
+      }
     }
 
-    // Set up drum hit effects starting at 17 seconds (4350ms after fire appears)
-    setTimeout(() => startDrumHitEffects(), 4350); // 17s total (12.65s + 4.35s)
+    // Set up drum hit effects only if not skipping text sequence
+    if (!DEV_CONFIG.skipIntro) {
+      const drumDelay = 4350;
+      setTimeout(() => startDrumHitEffects(), drumDelay);
+    }
+  }
+
+  // Function to jump straight to fire (skipping text sequence)
+  function startFireDirectly() {
+    console.log("🔥 Starting fire directly - skipping text sequence");
+    hideAllIntroTexts();
+    showMainTitleOnly();
+    setTimeout(() => {
+      showFireBackground();
+    }, 500);
   }
 
   function showMainTitle() {
@@ -205,15 +264,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function restartVideoAndFlash() {
     // Restart video from beginning
-    video.currentTime = 0;
+    if (!DEV_CONFIG.disableVideo) {
+      video.currentTime = 0;
+    }
 
-    // Flash effect
-    const flashOverlay = document.querySelector(".flash-overlay");
-    flashOverlay.classList.add("flash");
+    // Flash effect (skip if skipping intro)
+    if (!DEV_CONFIG.skipIntro) {
+      const flashOverlay = document.querySelector(".flash-overlay");
+      flashOverlay.classList.add("flash");
 
-    // Remove flash after brief moment
-    setTimeout(() => {
-      flashOverlay.classList.remove("flash");
-    }, 150);
+      // Remove flash after brief moment
+      setTimeout(() => {
+        flashOverlay.classList.remove("flash");
+      }, 150);
+    }
   }
 });
