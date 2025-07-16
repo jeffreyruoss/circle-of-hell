@@ -100,11 +100,10 @@ document.addEventListener("DOMContentLoaded", function () {
       setTimeout(() => showMainTitleOnly(), 500);
     }, 7000);
 
-    // Show fire background at 12 seconds, then quick fade
+    // Show fire background and flash at 12.65 seconds (one interval before the current timing)
     setTimeout(() => {
       showFireBackground();
-      setTimeout(() => quickFireFade(), 500);
-    }, 12000);
+    }, 12650);
   }
 
   function showIntroText(index) {
@@ -133,6 +132,13 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function showFireBackground() {
+    // Flash effect when fire appears
+    const flashOverlay = document.querySelector(".flash-overlay");
+    flashOverlay.classList.add("flash");
+    setTimeout(() => {
+      flashOverlay.classList.remove("flash");
+    }, 150);
+
     // Show video background and make container transparent
     video.classList.add("show");
     document.querySelector(".intro-container").classList.add("video-showing");
@@ -146,8 +152,8 @@ document.addEventListener("DOMContentLoaded", function () {
       );
     }
 
-    // Set up drum hit effects starting at 17 seconds
-    setTimeout(() => startDrumHitEffects(), 5000); // 17s total (12s + 5s)
+    // Set up drum hit effects starting at 17 seconds (4350ms after fire appears)
+    setTimeout(() => startDrumHitEffects(), 4350); // 17s total (12.65s + 4.35s)
   }
 
   function showMainTitle() {
@@ -156,18 +162,7 @@ document.addEventListener("DOMContentLoaded", function () {
     showFireBackground();
   }
 
-  function quickFireFade() {
-    video.style.transition = "opacity 0.5s ease-in-out";
-    video.style.opacity = "0.3";
-
-    setTimeout(() => {
-      video.style.opacity = "0.8";
-    }, 500);
-
-    setTimeout(() => {
-      video.style.transition = "opacity 3s ease-in-out";
-    }, 1000);
-  }
+  // Removed quickFireFade function - no fade effects for fire
 
   // Handle touch events for mobile video playback
   document.addEventListener(
@@ -195,10 +190,10 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function startDrumHitEffects() {
-    // First drum hit at 17 seconds
+    // First drum hit at 17 seconds (fire already appeared at 12.65s)
     restartVideoAndFlash();
 
-    // Then every 4 seconds after that (21s, 25s, 29s, etc.)
+    // Then every 4.35 seconds after that (21.35s, 25.7s, etc.)
     setInterval(() => {
       restartVideoAndFlash();
     }, 4350);
