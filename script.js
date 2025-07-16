@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
       setTimeout(() => showMainTitleOnly(), 500);
     }, 7000);
 
-    // Show fire background and flash at 12.65 seconds (one interval before the current timing)
+    // Show fire background and flash at 12.65 seconds (perfectly on beat)
     setTimeout(() => {
       showFireBackground();
     }, 12650);
@@ -132,15 +132,19 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function showFireBackground() {
-    // Flash effect when fire appears
+    // Flash effect synchronized with fire appearance
     const flashOverlay = document.querySelector(".flash-overlay");
     flashOverlay.classList.add("flash");
     setTimeout(() => {
       flashOverlay.classList.remove("flash");
     }, 150);
 
-    // Show video background and make container transparent
-    video.classList.add("show");
+    // Instant fire appearance (no fade/transition)
+    // Using direct style manipulation for immediate effect
+    video.style.transition = "none";
+    video.style.opacity = "0.8";
+
+    // Remove black overlay instantly (no background transition)
     document.querySelector(".intro-container").classList.add("video-showing");
 
     // Start video fresh from beginning

@@ -42,10 +42,6 @@ body {
   transform: translate(-50%, -50%);
   background-size: cover;
   opacity: 0;
-}
-
-.video-background.show {
-  opacity: 0.8 !important;
   transition: none !important;
 }
 
@@ -73,7 +69,6 @@ body {
   height: 100%;
   z-index: 1;
   background: #000;
-  transition: background 2s ease-in-out;
 }
 
 .intro-container.video-showing {
