@@ -212,6 +212,12 @@ document.addEventListener("DOMContentLoaded", function () {
   // Function to jump straight to fire (skipping text sequence)
   function startFireDirectly() {
     console.log("🔥 Starting fire directly - skipping text sequence");
+
+    // Start audio when jumping to fire
+    if (audio && !DEV_CONFIG.disableAudio) {
+      audio.play();
+    }
+
     hideAllIntroTexts();
     showMainTitleOnly();
     setTimeout(() => {
