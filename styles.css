@@ -102,10 +102,11 @@ body {
 }
 
 .start-warning {
+  font-family: 'Cambria', serif;
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 2rem;
-  text-shadow: 0 0 10px rgba(255, 0, 0, 0.7), 0 0 40px rgba(255, 0, 0, 0.5);
+  text-shadow: 0 0 8px rgb(255 102 0 / 0%), 0 0 20px rgb(255 102 0 / 74%), 0 0 30px rgb(255, 102, 0.1);
   /* animation: warningPulse 2.5s ease-in-out infinite; */
 }
 
@@ -132,7 +133,7 @@ body {
   cursor: pointer;
   text-shadow: 0 0 20px rgba(255, 102, 0, 0.7), 0 0 40px rgba(255, 102, 0, 0.5);
   transition: all 0.3s ease;
-  box-shadow: 0 0 30px rgba(255, 102, 0, 0.5) inset;
+  box-shadow: 0 0 30px rgba(255, 102, 0, 0.9) inset;
   animation: pulseOpacity 2s ease-in-out infinite;
 }
 
@@ -227,6 +228,7 @@ body {
 }
 
 .loading-text {
+  font-family: 'Cambria', serif;
   color: #000;
   font-size: 1.6rem;
   font-weight: bold;
