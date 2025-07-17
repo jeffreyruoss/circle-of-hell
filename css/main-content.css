@@ -15,7 +15,13 @@
 .main-content .fatazz-info,
 .main-content .donation-info,
 .main-content .donation-link {
-  font-family: 'Cambria', serif;
+  /* font-family: 'Cambria', serif; */
+  /* font-family: 'Times New Roman', Times, serif; */
+  font-family: 'Verdana', sans-serif;
+  /* font-family: 'Palatino', serif; */
+  /* font-family: 'Bookman', serif; */
+  /* font-family: 'Garamond', serif; */
+  font-weight: 300;
 }
 .content-container {
   position: relative;
@@ -48,11 +54,12 @@
   font-size: 3.5rem;
   margin-bottom: 1.5rem;
   color: #ff6600;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .subtitle {
   font-size: 2rem;
+  font-weight: 500;
   margin-bottom: 2.5rem;
   color: #ccc;
   text-transform: none;
@@ -68,7 +75,6 @@
 .location-info {
   font-size: 1.3rem;
   color: #ff6600;
-  font-weight: bold;
   margin: 2rem 0;
 }
 
@@ -77,11 +83,10 @@
 }
 
 .stats {
-  margin: 2rem 0;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.8rem;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
 }
 
 .stat-item {
@@ -94,7 +99,7 @@
 
 .stat-emoji {
   font-size: 1.8rem;
-  margin-right: 0.8rem;
+  margin-right: 0.5rem;
 }
 
 .rule-highlight {
