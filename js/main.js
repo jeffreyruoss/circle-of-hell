@@ -9,13 +9,19 @@ class CircleOfHellApp {
     this.effects = null;
     this.introAnimations = null;
     this.uiController = null;
+    this.cinderParticles = null;
   }
 
   init() {
     // Initialize all modules in the correct order
     this.mediaLoader = new MediaLoader();
     this.effects = new Effects();
-    this.introAnimations = new IntroAnimations(this.mediaLoader, this.effects);
+    this.cinderParticles = new CinderParticles();
+    this.introAnimations = new IntroAnimations(
+      this.mediaLoader,
+      this.effects,
+      this.cinderParticles
+    );
     this.uiController = new UIController(
       this.introAnimations,
       this.mediaLoader

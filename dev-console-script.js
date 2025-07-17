@@ -29,6 +29,10 @@ document.querySelector(".intro-container").classList.add("video-showing");
 video.currentTime = 0;
 video.play().catch((error) => console.log("Video autoplay blocked:", error));
 
+// Start cinder particles
+const cinderParticles = new CinderParticles();
+cinderParticles.onFireStart();
+
 console.log(
-  "🔥 Skipped to fire! Main title at final size with smooth glow animation!"
+  "🔥 Skipped to fire! Main title at final size with smooth glow animation and cinder particles!"
 );

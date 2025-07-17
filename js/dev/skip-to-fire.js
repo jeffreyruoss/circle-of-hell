@@ -62,6 +62,10 @@ class DevSkipToFire {
     video
       .play()
       .catch((error) => console.log("Video autoplay blocked:", error));
+
+    // Start cinder particles
+    const cinderParticles = new CinderParticles();
+    cinderParticles.onFireStart();
   }
 
   // Check URL params and execute if needed

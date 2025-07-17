@@ -4,9 +4,10 @@
  */
 
 class IntroAnimations {
-  constructor(mediaLoader, effects) {
+  constructor(mediaLoader, effects, cinderParticles) {
     this.mediaLoader = mediaLoader;
     this.effects = effects;
+    this.cinderParticles = cinderParticles;
     this.introHasStarted = false;
     this.introTexts = document.querySelectorAll(".intro-text");
     this.mainTitleIntro = document.querySelector(".main-title-intro");
@@ -115,6 +116,11 @@ class IntroAnimations {
     // Show video background
     this.mediaLoader.showVideo();
     this.effects.showVideoBackground();
+
+    // Start cinder particles when fire appears
+    if (this.cinderParticles) {
+      this.cinderParticles.onFireStart();
+    }
 
     // Start video fresh from beginning
     this.mediaLoader.playVideo();
