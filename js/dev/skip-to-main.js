@@ -29,6 +29,12 @@ class DevSkipToMain {
 
   // Immediate skip-to-main content
   skipToMainImmediate() {
+    // Stop loading messages if they exist
+    if (window.LoadingMessages) {
+      const loadingMessages = new LoadingMessages();
+      loadingMessages.stop();
+    }
+
     // Hide loading screen
     document.querySelector(".loading-container").style.display = "none";
 

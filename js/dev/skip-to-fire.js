@@ -31,6 +31,12 @@ class DevSkipToFire {
 
   // Immediate skip-to-fire (keeps glow animation)
   skipToFireImmediate() {
+    // Stop loading messages if they exist
+    if (window.LoadingMessages) {
+      const loadingMessages = new LoadingMessages();
+      loadingMessages.stop();
+    }
+
     // Hide loading screen
     document.querySelector(".loading-container").style.display = "none";
 

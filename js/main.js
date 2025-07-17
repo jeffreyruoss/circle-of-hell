@@ -10,9 +10,13 @@ class CircleOfHellApp {
     this.introAnimations = null;
     this.uiController = null;
     this.cinderParticles = null;
+    this.loadingMessages = null;
   }
 
   init() {
+    // Initialize loading messages first
+    this.loadingMessages = new LoadingMessages();
+
     // Initialize all modules in the correct order
     this.mediaLoader = new MediaLoader();
     this.effects = new Effects();
@@ -29,6 +33,8 @@ class CircleOfHellApp {
 
     // Set up media loading callback
     this.mediaLoader.onAllLoaded(() => {
+      // Stop loading messages when media is loaded
+      this.loadingMessages.onLoadingComplete();
       this.uiController.onMediaLoaded();
     });
 
