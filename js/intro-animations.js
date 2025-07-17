@@ -28,6 +28,10 @@ class IntroAnimations {
       this.showMainContent();
       // Stop the flash effects
       this.effects.stopFlashEffects(this.mediaLoader);
+      // Stop cinder particles when music changes
+      if (this.cinderParticles) {
+        this.cinderParticles.stop();
+      }
     }, 30100);
 
     // Check if we should skip the text sequence
@@ -75,6 +79,10 @@ class IntroAnimations {
       this.showMainContent();
       // Stop the flash effects
       this.effects.stopFlashEffects(this.mediaLoader);
+      // Stop cinder particles when music changes
+      if (this.cinderParticles) {
+        this.cinderParticles.stop();
+      }
     }, 30100);
 
     this.hideAllIntroTexts();
