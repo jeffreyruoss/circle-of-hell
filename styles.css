@@ -276,16 +276,31 @@ body {
   transform: translate(-50%, -50%) scale(1);
 }
 
-.intro-text.fire {
-  text-shadow: 0 0 20px rgba(255, 102, 0, 0.6), 0 0 40px rgba(255, 102, 0, 0.4), 0 0 60px rgba(255, 102, 0, 0.2);
-}
-
-.intro-text.death {
-  text-shadow: 0 0 20px rgba(255, 0, 0, 0.6), 0 0 40px rgba(255, 0, 0, 0.4), 0 0 60px rgba(255, 0, 0, 0.2);
-}
-
+.intro-text.fire,
+.intro-text.death,
 .intro-text.fun {
-  text-shadow: 0 0 20px rgba(255, 170, 0, 0.6), 0 0 40px rgba(255, 170, 0, 0.4), 0 0 60px rgba(255, 170, 0, 0.2);
+  text-shadow: 0 0 30px rgba(255, 102, 0, 0.9), 0 0 60px rgba(255, 102, 0, 0.7), 0 0 90px rgba(255, 102, 0, 0.5), 0 0 120px rgba(255, 102, 0, 0.3);
+}
+
+.intro-icon {
+  font-size: 6rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 0 0 0 rgba(0, 0, 0, 0.8);
+}
+
+.intro-icon img {
+  width: 200px;
+  height: 200px;
+}
+
+.intro-text.fire .intro-icon,
+.intro-text.death .intro-icon,
+.intro-text.fun .intro-icon {
+  color: rgba(50, 25, 0, 0.8);
+  text-shadow: 0 0 30px rgba(255, 102, 0, 0.9), 0 0 60px rgba(255, 102, 0, 0.7), 0 0 90px rgba(255, 102, 0, 0.5), 0 0 120px rgba(255, 102, 0, 0.3);
 }
 
 .main-title-intro {
@@ -294,8 +309,9 @@ body {
   left: 50%;
   transform: translate(-50%, -50%) scale(0.3);
   font-size: 5rem;
+  font-weight: bold;
   color: #000;
-  text-shadow: 0 0 30px rgba(255, 102, 0, 0.7), 0 0 50px rgba(255, 102, 0, 0.5), 0 0 70px rgba(255, 102, 0, 0.3), 0 0 90px rgba(255, 0, 0, 0.3);
+  text-shadow: 0 0 40px rgba(255, 102, 0, 0.9), 0 0 80px rgba(255, 102, 0, 0.7), 0 0 120px rgba(255, 102, 0, 0.5), 0 0 160px rgba(255, 0, 0, 0.4);
   opacity: 0;
   transition: opacity 1s ease-in-out;
   text-align: center;
@@ -392,13 +408,22 @@ body {
 .stats {
   margin: 2rem 0;
   gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .stat-item {
   font-size: 1.3rem;
   color: #000;
   text-shadow: 0 0 20px rgba(255, 255, 255, 0.7), 0 0 40px rgba(255, 255, 255, 0.5), 0 0 60px rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem 0;
 }
+
+
 
 .rule-highlight {
   background: rgba(255, 0, 0, 0.2);
