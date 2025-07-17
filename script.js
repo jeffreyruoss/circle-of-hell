@@ -127,21 +127,21 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Show stats one by one, fading out previous
-    setTimeout(() => showIntroText(0), 1000); // Fire - 3 hourz
+    setTimeout(() => showIntroText(0), 700); // Fire - 3 hourz
     setTimeout(() => {
       hideIntroText(0); // Hide Fire
       showIntroText(1); // Show Death - 1 mile loop
-    }, 3000);
+    }, 2700);
     setTimeout(() => {
       hideIntroText(1); // Hide Death
       showIntroText(2); // Show Fun - 2much FUn!
-    }, 5000);
+    }, 4700);
 
-    // Hide stats and show main title at 7 seconds (NO FIRE YET)
+    // Hide stats and show main title at 6.5 seconds (NO FIRE YET)
     setTimeout(() => {
       hideIntroText(2); // Hide the last stat (Fun)
       setTimeout(() => showMainTitleOnly(), 500);
-    }, 7000);
+    }, 6200);
 
     // Show fire background and flash at 12.65 seconds (perfectly on beat)
     setTimeout(() => {
