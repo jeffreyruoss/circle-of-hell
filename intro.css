@@ -17,16 +17,7 @@ body {
 }
 
 .intro-text,
-.main-title-intro,
-.title,
-.subtitle,
-.section,
-.location-info,
-.stat-item,
-.rule-highlight,
-.awards,
-.fatazz-info,
-.donation-link {
+.main-title-intro {
   font-family: 'Cinzel', serif;
 }
 

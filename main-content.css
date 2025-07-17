@@ -1,4 +1,22 @@
 /* Main Content Styles */
+
+/* Main content font families */
+.title,
+.subtitle {
+  font-family: 'Cinzel', serif;
+}
+
+/* Small text font family - all content text */
+.main-content .section,
+.main-content .location-info,
+.main-content .stat-item,
+.main-content .rule-highlight,
+.main-content .awards,
+.main-content .fatazz-info,
+.main-content .donation-info,
+.main-content .donation-link {
+  font-family: 'Cambria', serif;
+}
 .content-container {
   position: relative;
   z-index: 1;
