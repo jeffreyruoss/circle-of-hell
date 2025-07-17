@@ -13,7 +13,10 @@ startButtonContainer.style.display = "none";
 const mainTitle = document.querySelector(".main-title-intro");
 mainTitle.classList.add("show");
 mainTitle.style.opacity = "1";
-mainTitle.style.animation = "glowPulse 3s ease-in-out infinite alternate";
+// Commented out performance-heavy animation: mainTitle.style.animation = "glowPulse 3s ease-in-out infinite alternate";
+// Static text-shadow for better performance - using same as stats
+mainTitle.style.textShadow =
+  "0 0 50px rgba(255, 102, 0, 1), 0 0 70px rgba(255, 102, 0, 0.9), 0 0 100px rgba(255, 102, 0, 0.7), 0 0 150px rgba(255, 102, 0, 0.5), 0 0 150px rgba(255, 0, 0, 0.4), 0 0 4px rgba(255, 255, 255, 0.1), 0 0 2px rgba(255, 102, 0, 0.4)";
 mainTitle.style.transition = "none";
 mainTitle.style.transform = "translate(-50%, -50%) scale(1.4)";
 
