@@ -298,6 +298,7 @@ body {
   transform: translate(-50%, -50%) scale(0.3);
   font-size: 5rem;
   font-weight: 500;
+  line-height: 1.2;
   color: #000;
   text-shadow: 
     0 0 50px rgba(255, 102, 0, 1),
