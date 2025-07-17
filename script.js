@@ -4,13 +4,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Conditionally load audio
   let audio = null;
+  let audio2 = null;
   if (!DEV_CONFIG.disableAudio) {
     audio = new Audio("audio/cohr.mp3");
     audio.preload = "auto";
+    audio2 = new Audio("audio/cohr2.mp3");
+    audio2.preload = "auto";
   }
 
   let videoLoaded = DEV_CONFIG.disableVideo;
   let audioLoaded = DEV_CONFIG.disableAudio;
+  let audio2Loaded = DEV_CONFIG.disableAudio;
   let introHasStarted = false;
 
   // Check when both video and audio are ready to play (only once each)
@@ -56,10 +60,30 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       { once: true }
     );
+
+    audio2.addEventListener(
+      "canplay",
+      function () {
+        console.log("Audio2 ready to play");
+        audio2Loaded = true;
+        checkAllLoaded();
+      },
+      { once: true }
+    );
+
+    audio2.addEventListener(
+      "error",
+      function () {
+        console.log("Audio2 loading error");
+        audio2Loaded = true;
+        checkAllLoaded();
+      },
+      { once: true }
+    );
   }
 
   function checkAllLoaded() {
-    if (videoLoaded && audioLoaded) {
+    if (videoLoaded && audioLoaded && audio2Loaded) {
       console.log("All media loaded");
       document.querySelector(".loading-container").classList.add("hidden");
 
@@ -72,11 +96,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Fallback timeout (reduced from 10s to 3s since files are much smaller now)
   setTimeout(() => {
-    if (!videoLoaded || !audioLoaded) {
+    if (!videoLoaded || !audioLoaded || !audio2Loaded) {
       console.log("Timeout reached, starting anyway");
-      console.log(`Video loaded: ${videoLoaded}, Audio loaded: ${audioLoaded}`);
+      console.log(
+        `Video loaded: ${videoLoaded}, Audio loaded: ${audioLoaded}, Audio2 loaded: ${audio2Loaded}`
+      );
       videoLoaded = true;
       audioLoaded = true;
+      audio2Loaded = true;
       checkAllLoaded();
     }
   }, 3000);
@@ -117,6 +144,21 @@ document.addEventListener("DOMContentLoaded", function () {
     introHasStarted = true;
     if (audio && !DEV_CONFIG.disableAudio) {
       audio.play();
+
+      // Switch to second audio at 5th flash (30.05 seconds)
+      setTimeout(() => {
+        console.log("Switching to audio2 at 5th flash (30.05s)");
+        if (audio) {
+          audio.pause();
+          audio.currentTime = 0;
+        }
+        if (audio2) {
+          audio2.play();
+        }
+        // Hide title and show main content
+        hideMainTitle();
+        showMainContent();
+      }, 30050);
     }
 
     // Check if we should skip the text sequence
@@ -217,6 +259,21 @@ document.addEventListener("DOMContentLoaded", function () {
     // Start audio when jumping to fire
     if (audio && !DEV_CONFIG.disableAudio) {
       audio.play();
+
+      // Switch to second audio at 5th flash (30.05 seconds)
+      setTimeout(() => {
+        console.log("Switching to audio2 at 5th flash (30.05s)");
+        if (audio) {
+          audio.pause();
+          audio.currentTime = 0;
+        }
+        if (audio2) {
+          audio2.play();
+        }
+        // Hide title and show main content
+        hideMainTitle();
+        showMainContent();
+      }, 30050);
     }
 
     hideAllIntroTexts();
@@ -263,10 +320,30 @@ document.addEventListener("DOMContentLoaded", function () {
     // First drum hit at 17 seconds (fire already appeared at 12.65s)
     restartVideoAndFlash();
 
-    // Then every 4.35 seconds after that (21.35s, 25.7s, etc.)
-    setInterval(() => {
+    // Then every 4.35 seconds until 5th flash (21.35s, 25.7s, 30.05s)
+    let drumHitCount = 1;
+    const initialInterval = setInterval(() => {
       restartVideoAndFlash();
+      drumHitCount++;
+
+      // After 5th flash (30.05s), change to 2.5 second intervals
+      if (drumHitCount >= 4) {
+        // 4th hit in interval (5th total)
+        clearInterval(initialInterval);
+        // Start new faster interval
+        setInterval(() => {
+          restartVideoAndFlash();
+        }, 2500);
+      }
     }, 4350);
+  }
+
+  function hideMainTitle() {
+    document.querySelector(".main-title-intro").classList.remove("show");
+  }
+
+  function showMainContent() {
+    document.querySelector(".content-container").classList.add("show");
   }
 
   function restartVideoAndFlash() {

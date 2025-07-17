@@ -348,7 +348,6 @@ body {
   background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(1px);
   opacity: 0;
-  transition: opacity 2s ease-in-out;
 }
 
 .content-container.show {
