@@ -57,6 +57,23 @@
   font-weight: 500;
 }
 
+.circle-video {
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  display: inline-block;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.fire-video {
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  display: inline-block;
+  object-fit: contain;
+}
+
 .subtitle {
   font-size: 2rem;
   font-weight: 500;
