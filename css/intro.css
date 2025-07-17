@@ -226,9 +226,7 @@ body {
   font-family: 'Cambria', serif;
   color: #000;
   font-size: 1.6rem;
-  font-weight: bold;
-  text-shadow: 0 0 5px rgb(255, 102, 0.3), 0 0 20px rgb(255, 102, 0.3), 0 0 30px rgb(255, 102, 0.1);
-  animation: loadingPulse 2s ease-in-out infinite;
+  color: #9C3D11;
 }
 
 @keyframes loadingPulse {
