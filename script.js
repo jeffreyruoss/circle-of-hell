@@ -145,9 +145,9 @@ document.addEventListener("DOMContentLoaded", function () {
     if (audio && !DEV_CONFIG.disableAudio) {
       audio.play();
 
-      // Switch to second audio at 5th flash (30.05 seconds)
+      // Switch to second audio at 5th flash (30.15 seconds)
       setTimeout(() => {
-        console.log("Switching to audio2 at 5th flash (30.05s)");
+        console.log("Switching to audio2 at 5th flash (30.15s)");
         if (audio) {
           audio.pause();
           audio.currentTime = 0;
@@ -160,7 +160,7 @@ document.addEventListener("DOMContentLoaded", function () {
         showMainContent();
         // Stop the flash effects
         stopFlashEffects();
-      }, 30050);
+      }, 30100);
     }
 
     // Check if we should skip the text sequence
@@ -262,9 +262,9 @@ document.addEventListener("DOMContentLoaded", function () {
     if (audio && !DEV_CONFIG.disableAudio) {
       audio.play();
 
-      // Switch to second audio at 5th flash (30.05 seconds)
+      // Switch to second audio at 5th flash (30.15 seconds)
       setTimeout(() => {
-        console.log("Switching to audio2 at 5th flash (30.05s)");
+        console.log("Switching to audio2 at 5th flash (30.15s)");
         if (audio) {
           audio.pause();
           audio.currentTime = 0;
@@ -277,7 +277,7 @@ document.addEventListener("DOMContentLoaded", function () {
         showMainContent();
         // Stop the flash effects
         stopFlashEffects();
-      }, 30050);
+      }, 30100);
     }
 
     hideAllIntroTexts();
