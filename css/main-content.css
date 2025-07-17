@@ -52,21 +52,45 @@
   font-weight: 500;
 }
 
-.circle-video {
+/* Video Cropping Container Approach: 
+   Creates a "window" with overflow:hidden to crop away unwanted transparent space */
+
+.circle-video-container {
   width: 1em;
   height: 1em;
   vertical-align: middle;
   display: inline-block;
-  object-fit: contain;
-  border-radius: 50%;
+  overflow: hidden; /* This crops the video content */
+  position: relative;
+}
+
+.circle-video {
+  width: 2.2em;  /* Make video larger than container to crop edges */
+  height: 2.2em;
+  object-fit: cover;
+  position: absolute;
+  top: -0.65em;    /* Negative values move video up to crop top edge */
+  left: -0.6em;   /* Negative values move video left to crop left edge */
+  /* Fine-tune: adjust top/left to position the visual content perfectly */
+}
+
+.fire-video-container {
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  display: inline-block;
+  overflow: hidden; /* This crops the video content */
+  position: relative;
 }
 
 .fire-video {
-  width: 1em;
-  height: 1em;
-  vertical-align: middle;
-  display: inline-block;
-  object-fit: contain;
+  width: 1.4em;   /* Make video larger than container to crop edges */
+  height: 1.4em;
+  object-fit: cover;
+  position: absolute;
+  top: -0.25em;    /* Negative values move video up to crop top edge */
+  left: -0.2em;   /* Negative values move video left to crop left edge */
+  /* Fine-tune: adjust top/left to position the visual content perfectly */
 }
 
 .subtitle {

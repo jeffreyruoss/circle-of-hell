@@ -274,6 +274,12 @@ body {
   white-space: nowrap;
 }
 
+@media (min-width: 768px) {
+  .intro-text {
+    font-size: 3.5rem;
+  }
+}
+
 .intro-text.show {
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
