@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&display=swap');
-/* @import url('https://fonts.googleapis.com/css2?family=Amarante&family=MedievalSharp&display=swap'); */
 
 * {
   margin: 0;
@@ -317,7 +316,7 @@ body {
 
 .main-title-intro.show {
   opacity: 1;
-  animation: continuousZoom 6s ease-out forwards;
+  animation: continuousZoom 6s ease-out forwards, glowPulse 3s ease-in-out infinite alternate;
 }
 
 @keyframes continuousZoom {
@@ -326,6 +325,39 @@ body {
   }
   100% {
     transform: translate(-50%, -50%) scale(1.4);
+  }
+}
+
+@keyframes glowPulse {
+  0% {
+    text-shadow: 
+      0 0 30px rgba(255, 102, 0, 0.6),
+      0 0 50px rgba(255, 102, 0, 0.5),
+      0 0 70px rgba(255, 102, 0, 0.4),
+      0 0 120px rgba(255, 102, 0, 0.3),
+      0 0 120px rgba(255, 0, 0, 0.2),
+      0 0 2px rgba(255, 255, 255, 0.05),
+      0 0 1px rgba(255, 102, 0, 0.2);
+  }
+  50% {
+    text-shadow: 
+      0 0 50px rgba(255, 102, 0, 1),
+      0 0 70px rgba(255, 102, 0, 0.9),
+      0 0 100px rgba(255, 102, 0, 0.7),
+      0 0 150px rgba(255, 102, 0, 0.5),
+      0 0 150px rgba(255, 0, 0, 0.4),
+      0 0 4px rgba(255, 255, 255, 0.1),
+      0 0 2px rgba(255, 102, 0, 0.4);
+  }
+  100% {
+    text-shadow: 
+      0 0 70px rgba(255, 102, 0, 1),
+      0 0 90px rgba(255, 102, 0, 1),
+      0 0 130px rgba(255, 102, 0, 0.9),
+      0 0 180px rgba(255, 102, 0, 0.7),
+      0 0 180px rgba(255, 0, 0, 0.6),
+      0 0 6px rgba(255, 255, 255, 0.2),
+      0 0 3px rgba(255, 102, 0, 0.6);
   }
 }
 

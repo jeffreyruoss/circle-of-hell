@@ -23,11 +23,13 @@ class DevSkipToFire {
     // Wait a bit for DOM elements to be ready, then execute skip script
     setTimeout(() => {
       this.skipToFireImmediate();
-      console.log("🔥 Auto-skipped to fire via URL parameter!");
+      console.log(
+        "🔥 Auto-skipped to fire via URL parameter! (with smooth glow animation)"
+      );
     }, 100);
   }
 
-  // Immediate skip-to-fire (same as console script)
+  // Immediate skip-to-fire (keeps glow animation)
   skipToFireImmediate() {
     // Hide loading screen
     document.querySelector(".loading-container").style.display = "none";
@@ -39,11 +41,11 @@ class DevSkipToFire {
     startButtonContainer.classList.remove("show");
     startButtonContainer.style.display = "none";
 
-    // Show main title at final large size (skip fade-in and zoom animation)
+    // Show main title at final large size (skip fade-in and zoom animation but keep glow)
     const mainTitle = document.querySelector(".main-title-intro");
     mainTitle.classList.add("show");
     mainTitle.style.opacity = "1";
-    mainTitle.style.animation = "none";
+    mainTitle.style.animation = "glowPulse 3s ease-in-out infinite alternate";
     mainTitle.style.transition = "none";
     mainTitle.style.transform = "translate(-50%, -50%) scale(1.4)";
 
