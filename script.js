@@ -158,6 +158,8 @@ document.addEventListener("DOMContentLoaded", function () {
         // Hide title and show main content
         hideMainTitle();
         showMainContent();
+        // Stop the flash effects
+        stopFlashEffects();
       }, 30050);
     }
 
@@ -273,6 +275,8 @@ document.addEventListener("DOMContentLoaded", function () {
         // Hide title and show main content
         hideMainTitle();
         showMainContent();
+        // Stop the flash effects
+        stopFlashEffects();
       }, 30050);
     }
 
@@ -344,6 +348,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function showMainContent() {
     document.querySelector(".content-container").classList.add("show");
+  }
+
+  function stopFlashEffects() {
+    // Clear all intervals and prevent further flashes
+    clearAllTimeouts();
+    // Hide flash overlay permanently
+    const flashOverlay = document.querySelector(".flash-overlay");
+    flashOverlay.style.display = "none";
   }
 
   function restartVideoAndFlash() {

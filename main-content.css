@@ -1,0 +1,153 @@
+/* Main Content Styles */
+.content-container {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.8);
+  opacity: 0;
+}
+
+.content-container.show {
+  opacity: 1;
+}
+
+.main-content {
+  max-width: 900px;
+  width: 100%;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.9);
+  padding: 3rem 2.5rem;
+  border-radius: 15px;
+  border: 2px solid #666;
+}
+
+.title {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  color: #ff6600;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 2rem;
+  margin-bottom: 2.5rem;
+  color: #ccc;
+  text-transform: none;
+}
+
+.section {
+  margin: 2rem 0;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #ddd;
+}
+
+.location-info {
+  font-size: 1.3rem;
+  color: #ff6600;
+  font-weight: bold;
+  margin: 2rem 0;
+}
+
+.event-details {
+  margin: 2rem 0;
+}
+
+.stats {
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.stat-item {
+  font-size: 1.3rem;
+  color: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-emoji {
+  font-size: 1.8rem;
+  margin-right: 0.8rem;
+}
+
+.rule-highlight {
+  background: rgba(255, 0, 0, 0.1);
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 1px solid #ff0000;
+  margin: 2rem 0;
+  font-size: 1.2rem;
+  color: #ffcccc;
+}
+
+.awards {
+  background: rgba(255, 215, 0, 0.1);
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 1px solid #ffd700;
+  margin: 2rem 0;
+  color: #ffffcc;
+}
+
+.fatazz-info {
+  background: rgba(128, 0, 128, 0.1);
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 1px solid #8000ff;
+  margin: 2rem 0;
+  font-style: italic;
+  color: #e6ccff;
+}
+
+.donation-info {
+  background: rgba(0, 128, 0, 0.1);
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 1px solid #00aa00;
+  margin: 2rem 0;
+  color: #ccffcc;
+}
+
+.donation-link {
+  color: #66ff99;
+  text-decoration: none;
+  word-break: break-all;
+}
+
+.donation-link:hover {
+  color: #99ffcc;
+  text-decoration: underline;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .title {
+    font-size: 2.5rem;
+  }
+  
+  .subtitle {
+    font-size: 1.5rem;
+  }
+  
+  .main-content {
+    padding: 2rem 1.5rem;
+    margin: 1rem;
+  }
+  
+  .stat-item {
+    font-size: 1.2rem;
+  }
+  
+  .stat-emoji {
+    font-size: 1.6rem;
+  }
+} 
