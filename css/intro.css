@@ -95,14 +95,24 @@ body {
   pointer-events: none;
 }
 
+.start-content {
+  padding: 1rem;
+}
+
 .start-warning-sound {
   /* font-family: 'Cambria', serif; */
-  font-size: 2rem;
+  font-size: 1.2rem;
   /* font-weight: normal; */
   margin-top: 2rem;
   margin-bottom: 2rem;
   color: #9C3D11;
   /* text-shadow: 0 0 8px rgb(255 102 0 / 0%), 0 0 20px rgba(255, 81, 0, 0.74), 0 0 30px rgb(255, 72, 0); */
+}
+
+@media (min-width: 768px) {
+  .start-warning-sound {
+    font-size: 1.5rem;
+  }
 }
 
 .start-warning {
@@ -114,11 +124,9 @@ body {
   margin-bottom: 2rem;
 }
 
-
-
 .start-button {
   font-family: 'Cinzel', serif;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bold;
   color: #000;
   background: transparent;
@@ -130,6 +138,12 @@ body {
   transition: all 0.3s ease;
   box-shadow: 0 0 30px rgba(255, 102, 0, 0.9) inset;
   animation: pulseOpacity 2s ease-in-out infinite;
+}
+
+@media (min-width: 768px) {
+  .start-button {
+    font-size: 2rem;
+  }
 }
 
 .start-button:hover {
@@ -251,7 +265,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0.8);
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: 500;
   color: #000;
   opacity: 0;
@@ -299,11 +313,12 @@ body {
 }
 
 .main-title-intro {
+  max-width: 280px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0.3);
-  font-size: 5rem;
+  font-size: 2.9rem;
   font-weight: 500;
   line-height: 1.2;
   color: #000;
@@ -318,6 +333,25 @@ body {
   opacity: 0;
   transition: opacity 1s ease-in-out;
   text-align: center;
+}
+
+@media (min-width: 768px) {
+  .main-title-intro {
+    max-width: 100%;
+    font-size: 3.1rem;
+  }
+}
+
+@media (min-width: 1000px) {
+  .main-title-intro {
+    font-size: 4rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .main-title-intro {
+    font-size: 5rem;
+  }
 }
 
 .main-title-intro.show {
@@ -386,13 +420,3 @@ body {
 .hidden {
   display: none;
 }
-
-@media (max-width: 768px) {
-  .intro-text {
-    font-size: 3rem;
-  }
-  
-  .main-title-intro {
-    font-size: 3.5rem;
-  }
-} 
