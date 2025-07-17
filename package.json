@@ -1,0 +1,35 @@
+{
+  "name": "circle-of-hell",
+  "version": "1.0.0",
+  "description": "The hottest fixed time fatazz in the world! Circle of Hell Race website with hellish animations and effects.",
+  "scripts": {
+    "dev": "echo \"🔥 Starting Circle of Hell dev server...\" && echo \"📱 Network URL: http://$(ipconfig getifaddr en0 || ifconfig | grep 'inet ' | grep -v 127.0.0.1 | awk '{print $2}' | head -1):8000\" && echo \"💻 Local URL: http://localhost:8000\" && echo \"\" && python3 -m http.server 8000",
+    "start": "npm run dev",
+    "ip": "echo \"📱 Your network IP: $(ipconfig getifaddr en0 || ifconfig | grep 'inet ' | grep -v 127.0.0.1 | awk '{print $2}' | head -1)\" && echo \"🌐 Network URL: http://$(ipconfig getifaddr en0 || ifconfig | grep 'inet ' | grep -v 127.0.0.1 | awk '{print $2}' | head -1):8000\"",
+    "stop": "lsof -ti:8000 | xargs kill -9 || echo 'No server running on port 8000'",
+    "build": "echo \"✅ Static site - no build needed! Deploy the entire directory to your web server.\"",
+    "preview": "npm run dev"
+  },
+  "keywords": [
+    "circle-of-hell",
+    "race",
+    "website",
+    "animation",
+    "fire",
+    "hellish",
+    "particles",
+    "webm",
+    "audio"
+  ],
+  "author": "Jeffrey Ruoss",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jeffreyruoss/circle-of-hell.git"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "devDependencies": {},
+  "dependencies": {}
+}
