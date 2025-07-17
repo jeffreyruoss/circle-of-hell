@@ -351,11 +351,12 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function stopFlashEffects() {
-    // Clear all intervals and prevent further flashes
-    clearAllTimeouts();
-    // Hide flash overlay permanently
+    // Move flash behind main content instead of hiding it
     const flashOverlay = document.querySelector(".flash-overlay");
-    flashOverlay.style.display = "none";
+    flashOverlay.style.zIndex = "0"; // Behind main content (which has z-index: 1)
+
+    // Note: We no longer clear timeouts or hide the flash completely
+    // This allows flash effects to continue but behind the main content
   }
 
   function restartVideoAndFlash() {
