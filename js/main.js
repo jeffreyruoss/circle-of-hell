@@ -32,6 +32,13 @@ class CircleOfHellApp {
 
 // Initialize the application when DOM is ready
 document.addEventListener("DOMContentLoaded", function () {
-  const app = new CircleOfHellApp();
-  app.init();
+  // Check for development skip-to-fire URL parameters first
+  const devSkipToFire = new DevSkipToFire();
+  const skippedToFire = devSkipToFire.checkAndExecute();
+
+  // Only initialize normal app flow if not skipping to fire
+  if (!skippedToFire) {
+    const app = new CircleOfHellApp();
+    app.init();
+  }
 });
